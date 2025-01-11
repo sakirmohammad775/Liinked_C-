@@ -32,5 +32,8 @@ int main()
     st.push(30);
 
     cout << st.top() << endl; // prints 30
+    st.pop();
+    st.pop();
+    cout << st.top() << endl; // prints 20
     return 0;
 }
