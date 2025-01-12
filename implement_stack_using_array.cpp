@@ -34,6 +34,9 @@ int main()
         cin>>x;
         st.push(x);
     }
-    cout<<st.top();
+  while(!st.empty( )){
+    cout<<st.top()<<endl;
+    st.pop();
+  }
     return 0;
 }
