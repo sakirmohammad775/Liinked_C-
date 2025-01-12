@@ -20,9 +20,11 @@ class myStack
 public:
     Node *head = NULL;
     Node *tail = NULL;
+    int sz = 0;
 
     void push(int val) // push operation void
     {                  //  O(1)
+        sz++;
         Node *newnode = new Node(val);
         if (head == NULL)
         {
@@ -37,6 +39,7 @@ public:
 
     void pop() // O(1)
     {
+        sz--;
         Node *deletenode = tail;
         tail = tail->prev;
         delete deletenode;
@@ -50,10 +53,20 @@ public:
 
     int top()
     {
+        return tail->val;
+    }
+    int size()
+    {
+        return sz;
     }
     bool empty()
     {
-        return v.empty(); // empty() is used to check if the vector is empty or not
+        if (head == NULL)
+        {
+            return true;
+        }
+        else
+            return false;
     }
 };
 
