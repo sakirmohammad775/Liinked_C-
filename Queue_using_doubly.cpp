@@ -6,10 +6,12 @@ class Node
 public:
     int val;
     Node *next;
+    Node *prev;
     Node(int val)
     {
         this->val = val;   // Initialize the node's value with the given 'val'
         this->next = NULL; // Initialize next pointer to NULL
+        this->prev=NULL;
     }
 };
 class myQueue
@@ -30,6 +32,7 @@ public:
             return;
         }
         tail->next = newnode;
+        newnode->prev=tail;
         tail = newnode;
     }
 
@@ -39,10 +42,14 @@ public:
         Node *deleteNode = head;
         head = head->next;
         delete deleteNode;
+
         if (head == NULL)
         {
             tail = NULL;
+            return;
         }
+        head->prev = NULL;
+
     }
 
     int front() // Get the front element
