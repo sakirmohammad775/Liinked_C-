@@ -51,5 +51,10 @@ int main()
         q.push(val);
     }
     cout << q.front() << " " << q.back() << " " << q.size() << endl;
+    while(!q.empty()){
+        cout << q.front() << " "<<endl;
+        q.pop();
+    }
+
     return 0;
 }
