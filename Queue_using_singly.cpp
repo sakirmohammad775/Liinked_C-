@@ -17,17 +17,52 @@ class myQueue
 public:
     Node *head;
     Node *tail;
+    int sz = 0;
 
     void push(int val) // Add an element to the end of the queue //kono kichu return kore na tai void used
     {
-        Node* newnode= new Node(val);
-        if(head==NULL){
-            head=newnode;
-            tail=newnode;
+        sz++;
+        Node *newnode = new Node(val);
+        if (head == NULL)
+        {
+            head = newnode;
+            tail = newnode;
             return;
         }
-        tail->next=newnode;
-        tail=newnode;
+        tail->next = newnode;
+        tail = newnode;
+    }
+
+    void pop() // Remove an element from the front of the queue
+    {
+        sz--;
+        Node *deleteNode = head;
+        head = head->next;
+        delete deleteNode;
+        if (head == NULL)
+        {
+            tail = NULL;
+        }
+    }
+
+    int front() // Get the front element
+    {
+        return head->val;
+    }
+
+    int back()
+    { // O(1)
+        return tail->val;
+    }
+
+    int size()
+    {
+        return sz;
+    }
+
+    bool empty()
+    {
+        return head == NULL;
     }
 };
 
