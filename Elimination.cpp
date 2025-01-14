@@ -1,35 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main()
-{
+int main() {
     int tc;
     cin >> tc;
-    while (tc--)
-    {
-        string BinStr;
-        cin >> BinStr;
+    while(tc--){
+        string cs;
+        cin >> cs;
+        stack<char>st;
 
-        queue<char> q;
-        for (char c : BinStr)
-        {
-            if (!q.empty())
-            {
-                if ((c == '1' && q.front() == '0') || (c == '0' && q.front() == '1'))
-                {
-                    q.pop();
-                }
-                else
-                {
-                    q.push(c);
-                }
+        for(char c:cs){
+            if(c=='0'){
+                st.push(c);
             }
-            else
-            {
-                q.push(c);
+            else if(c=='1'){
+                if(!st.empty() && st.top()=='0'){
+                    st.pop();
+                }
+                else{
+                    st.push(c);
+                }
             }
         }
-        cout << (q.empty() ? "YES" : "NO") << endl;
+        cout<<(st.empty()?"YES":"NO")<<endl;
+
     }
     return 0;
 }

@@ -4,34 +4,26 @@ using namespace std;
 int main()
 {
     int tc;
-    cin >> tc; // Read number of test cases
+    cin >> tc;
     while (tc--)
     {
-        string s;
-        cin >> s; // Read the string
+        string bs;
+        cin >> bs;
 
-        stack<char> st; // Stack to keep track of '0's and '1's
+        stack<char> st;
 
-        for (char cs : s)
+        for (char cs : bs)
         {
-            if (cs == '0')
+            if (!st.empty() && ((cs == '0' && st.top() == '1') || (cs == '1' && st.top() == '0')))
             {
-                st.push(cs); // Push '0' onto the stack
+
+                st.pop();
             }
-            else if (cs == '1')
+            else
             {
-                if (!st.empty() && st.top() == '0')
-                {
-                    st.pop(); // Pop '0' if there's a '1'
-                }
-                else
-                {
-                    st.push(cs); // Push '1' onto the stack if no '0' to pop
-                }
+                st.push(cs);
             }
         }
-
-        // After processing all characters, check if the stack is empty
         cout << (st.empty() ? "YES" : "NO") << endl;
     }
     return 0;
