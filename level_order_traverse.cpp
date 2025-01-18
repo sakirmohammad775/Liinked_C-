@@ -14,12 +14,26 @@ public:
     }
 };
 
-void level_order(Node* root){
+void level_order(Node *root)
+{
 
-    queue<Node*>q; //we keep node in queue that's why
-    
+    queue<Node *> q; // we keep node in queue that's why
+    q.push(root);
+    while (!q.empty())
+    {
+        // 1.ber kore ana
+        Node *f = q.front();
+        q.pop();
+        // 2.oi node ke niye kaj kora
+        cout << f->val << " ";
+        // 3.children push kora
+        if (f->left)
+            q.push(f->left);
+
+        if (f->right)
+            q.push(f->right);
+    }
 }
-
 
 int main()
 {
@@ -37,6 +51,7 @@ int main()
     b->left = d;
     b->right = e;
 
+    level_order(root);
 
     return 0;
 }
