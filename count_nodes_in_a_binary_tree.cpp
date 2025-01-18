@@ -19,6 +19,7 @@ Node *input_tree()
     int val;
     cin >> val;
     Node *root;
+
     if (val == -1) root = NULL; // corner case
     else root = new Node(val);
   
@@ -57,30 +58,18 @@ Node *input_tree()
 
     return root;
 }
-void level_order(Node *root)
-{
-
-    queue<Node *> q; // we keep node in queue that's why
-    q.push(root);
-    while (!q.empty())
-    {
-        // 1.ber kore ana
-        Node *f = q.front();
-        q.pop();
-        // 2.oi node ke niye kaj kora
-        cout << f->val << " ";
-        // 3.children push kora
-        if (f->left)
-            q.push(f->left);
-
-        if (f->right)
-            q.push(f->right);
-    }
+int count_nodes(Node* root){
+    if(root==NULL)
+        return 0;
+    int l=count_nodes(root->left); // 
+    int r=count_nodes(root->right);
+    int count=l+r+1;
+    return count;
 }
 
 int main()
 {
     Node *root = input_tree();
-    level_order(root);
+    cout<<count_nodes(root);
     return 0;
 }
