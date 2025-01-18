@@ -19,11 +19,15 @@ Node *input_tree()
     int val;
     cin >> val;
     Node *root;
-    if (val == -1) root = NULL; // corner case
-    else root = new Node(val);
-  
+
+    if (val == -1)
+        root = NULL; // corner case
+    else
+        root = new Node(val);
+
     queue<Node *> q;
-    if (root) q.push(root); // corner case
+    if (root)
+        q.push(root); // corner case
 
     while (!q.empty())
     {
@@ -57,30 +61,21 @@ Node *input_tree()
 
     return root;
 }
-void level_order(Node *root)
+int count_leaf_nodes(Node *root)
 {
-
-    queue<Node *> q; // we keep node in queue that's why
-    q.push(root);
-    while (!q.empty())
-    {
-        // 1.ber kore ana
-        Node *f = q.front();
-        q.pop();
-        // 2.oi node ke niye kaj kora
-        cout << f->val << " ";
-        // 3.children push kora
-        if (f->left)
-            q.push(f->left);
-
-        if (f->right)
-            q.push(f->right);
-    }
+    if (root == NULL)
+        return 0;
+    if (root->left == NULL && root->right == NULL)
+        return 1; // leaf node check 
+    int l = count_leaf_nodes(root->left); //
+    int r = count_leaf_nodes(root->right);
+    int count = l + r;
+    return count;
 }
 
 int main()
 {
     Node *root = input_tree();
-    level_order(root);
+    cout << count_leaf_nodes(root);
     return 0;
 }
