@@ -61,13 +61,15 @@ Node *input_tree()
 
     return root;
 }
+
 int count_leaf_nodes(Node *root)
 {
     if (root == NULL)
         return 0;
     if (root->left == NULL && root->right == NULL)
         return 1; // leaf node check 
-    int l = count_leaf_nodes(root->left); //
+
+    int l = count_leaf_nodes(root->left); // 
     int r = count_leaf_nodes(root->right);
     int count = l + r;
     return count;
