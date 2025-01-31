@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 class Node
 {
 public:
@@ -8,30 +9,33 @@ public:
     Node *right;
     Node(int val)
     {
-        this->val = val;
-        this->left = NULL;
+        this->val = val;   // Initialize the node's value with the given 'val'
+        this->left = NULL; // Initialize next pointer to NULL
         this->right = NULL;
     }
 };
-Node *binaryTree()
+Node *input_tree()
 {
     int val;
     cin >> val;
     Node *root;
+
     if (val == -1)
-        root = NULL;
+        root = NULL; // corner case
     else
         root = new Node(val);
 
     queue<Node *> q;
     if (root)
-        q.push(root);
+        q.push(root); // corner case
 
     while (!q.empty())
     {
+        // 1.ber kora
         Node *p = q.front();
         q.pop();
 
+        // 2.node niye  kaj
         int l, r;
         cin >> l >> r;
         Node *myLeft, *myRight;
@@ -48,6 +52,7 @@ Node *binaryTree()
         p->left = myLeft;
         p->right = myRight;
 
+        // 3.children push
         if (p->left)
             q.push(p->left);
         if (p->right)
@@ -56,39 +61,29 @@ Node *binaryTree()
 
     return root;
 }
-void leafNodes(Node *root)
+bool search(Node *root, int val)
 {
     if (root == NULL)
-        return;
-    queue<Node *> q;
-    q.push(root);
+        return false;
+    if (root->val == val)
+        return true;
 
-    stack<int> leafNodes;
-        while (!q.empty()) {
-        Node* node = q.front();
-        q.pop();
-
-        if (node->left == NULL && node->right == NULL) {
-            leafNodes.push(node->val); 
-        }
-
-        if (node->left) q.push(node->left);
-        if (node->right) q.push(node->right);
-    }
-    while(!leafNodes.empty()){
-        cout<<leafNodes.top()<<" ";
-        leafNodes.pop();
-    }
-    cout<<endl;
+    if (root->val > val)
+       return search(root->left, val);
+    else
+       return search(root->right, val);
 }
-
 int main()
 {
-    Node* root = binaryTree();
-    if(root==NULL){
-        cout<<"Invalid"<<endl;
-        return 0;
+    Node *root = input_tree();
+    int val;
+    cin >> val;
+    if(search(root,val)){
+        cout << "Found" << endl;
     }
-    leafNodes(root);
+    else{
+        cout << "Not Found" << endl;
+    }
+
     return 0;
 }
