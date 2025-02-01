@@ -1,1 +1,12 @@
-8 2 15 5 11 18 
+ali 25 100
+ali 25 100
+ali 25 100
+jobbar 24 99
+jobbar 24 99
+akib 23 95
+akib 23 95
+2 2 2
+2 2 2
+Empty
+Empty
+Empty
